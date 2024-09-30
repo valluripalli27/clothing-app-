@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sisho - Affordable Clothing Deals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/Users/saitarunmattaparthi/Desktop/sisho/background.jpg'); /* Main background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header, .low-cost-deals, .container {
+            background-image: url('/Users/saitarunmattaparthi/Desktop/sisho/background.jpg'); /* Set background for header, main sections */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+        }
+
+        /* Sisho Title Styling */
+        .logo-title {
+            font-weight: bold;
+            font-family: 'Uncial Antiqua', cursive;
+            font-size: 36px;
+        }
+
+        .logo-subtitle {
+            font-size: 16px;
+        }
+
+        /* Navigation Links */
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Right Corner Buttons */
+        .right-buttons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .right-buttons button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .right-buttons button:hover {
+            background-color: #ddd;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Products Styling */
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        .low-cost-deals {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 10px;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 30%;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Upload Section Styling */
+        .upload-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+        }
+
+        /* Footer with Design Background */
+        footer {
+            background-image: url('/Users/saitarunmattaparthi/Desktop/sisho/design.jpg'); /* Footer background image */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Intro Section Styles */
+        .intro-section h1,
+        .intro-section p {
+            font-family: 'Lucida Calligraphy', cursive;
+            font-size: medium;
+            color: white;
+        }
+
+        /* Large Headers for Clothing Sections */
+        .clothing-header {
+            font-size: 36px; /* Large font size */
+            color: white; /* White font color */
+            text-align: center;
+            margin: 20px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <div class="logo-title">Sisho</div>
+        <div class="logo-subtitle">Affordable Clothing Deals</div>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('women')">Women</a>
+        <a href="#" onclick="showSection('men')">Men</a>
+        <a href="#" onclick="showSection('kids')">Kids</a>
+    </nav>
+
+    <!-- Right Corner Buttons -->
+    <div class="right-buttons">
+        <button onclick="openLoginModal()">Login</button>
+        <button id="shopping-bag-btn">Shopping Bag (0)</button>
+    </div>
+    
+    <!-- Modal for Login/Signup -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <div id="loginForm">
+                <h2>Login</h2>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button onclick="login()">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showSignupForm()">Create an account</a></p>
+            </div>
+            <div id="signupForm" style="display:none;">
+                <h2>Create Account</h2>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="newUsername">Username:</label>
+                <input type="text" id="newUsername" name="newUsername" required><br>
+                <label for="newPassword">Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required><br>
+                <button onclick="signup()">Sign Up</button>
+                <p>Already have an account? <a href="#" onclick="showLoginForm()">Login</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+    
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+    
+        function showSignupForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+        }
+    
+        function showLoginForm() {
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+    
+        function login() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+    
+            // Simulate a login check. Replace with real authentication logic.
+            if (username === 'testuser' && password === 'password123') {
+                alert('Login successful!');
+                closeLoginModal();
+            } else {
+                alert('Invalid username or password.');
+            }
+        }
+    
+        function signup() {
+            var email = document.getElementById('email').value;
+            var newUsername = document.getElementById('newUsername').value;
+            var newPassword = document.getElementById('newPassword').value;
+    
+            // Password strength check
+            if (newPassword.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+    
+            // Simulate account creation. Replace with real logic.
+            alert('Account created successfully for ' + email);
+            showLoginForm();
+        }
+    </script>
+</header>
+
+<!-- Search Bar in the middle of the page -->
+<div class="search-bar">
+    <input type="text" placeholder="Search for clothes...">
+</div>
+
+<div class="container">
+    <!-- Introduction Section -->
+    <style>
+        @font-face {
+            font-family: 'Adiro';
+            src: url('path-to-your-font/Adiro.ttf') format('truetype');
+        }
+        .intro-section {
+            font-family: 'Adiro', sans-serif;
+            font-weight: normal;
+        }
+    </style>
+    
+    <div id="home" class="intro-section">
+        <h1>Welcome to Sisho</h1>
+        <p>Sisho is your one-stop platform for finding affordable clothing deals from top online retailers like Shein, Temu, Amazon, and more. Whether you're looking for stylish outfits for men, women, or kids, Sisho brings you the best prices across all sizes and categories. From trendy tops to durable shoes, you can easily compare options under $50 and snag amazing deals. Our curated selection covers a wide range of styles and fits, ensuring that everyone can enjoy fashion-forward clothing without breaking the bank. And there is another option where you can upload your designs with your own prices and sell them. Sisho simplifies your shopping experience by showcasing budget-friendly finds from all your favorite sites!</p>
+    </div>
+    
+
+    <div id="women" class="container" style="display:none;">
+        <!-- Women’s Clothing Section -->
+        <h2 class="clothing-header">Women’s Clothing</h2>
+        <div class="products">
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/frocks.webp" alt="Women Product 1">
+                <h3>Women Product 1</h3>
+                <p>$29.99</p>
+                <button onclick="addToCart('Women Product 1', 29.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/women-product-1" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/women-product-1" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/women-product-1" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/top2.jpg" alt="Women Product 2">
+                <h3>Women Product 2</h3>
+                <p>$34.99</p>
+                <button onclick="addToCart('Women Product 2', 34.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/women-product-2" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/women-product-2" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/women-product-2" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/women.jpg" alt="Women Product 3">
+                <h3>Women Product 3</h3>
+                <p>$45.00</p>
+                <button onclick="addToCart('Women Product 3', 45.00)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/women-product-3" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/women-product-3" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/women-product-3" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="men" class="container" style="display:none;">
+        <!-- Men’s Clothing Section -->
+        <h2 class="clothing-header">Men’s Clothing</h2>
+        <div class="products">
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/blazer.jpg" alt="Men Product 1">
+                <h3>Men Product 1</h3>
+                <p>$39.99</p>
+                <button onclick="addToCart('Men Product 1', 39.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/men-product-1" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/men-product-1" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/men-product-1" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/menjacket.jpg" alt="Men Product 2">
+                <h3>Men Product 2</h3>
+                <p>$29.99</p>
+                <button onclick="addToCart('Men Product 2', 29.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/men-product-2" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/men-product-2" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/men-product-2" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/men jeans.jpg" alt="Men Product 3">
+                <h3>Men Product 3</h3>
+                <p>$49.99</p>
+                <button onclick="addToCart('Men Product 3', 49.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/men-product-3" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/men-product-3" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/men-product-3" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div id="kids" class="container" style="display:none;">
+        <!-- Kids’ Clothing Section -->
+        <h2 class="clothing-header">Kids’ Clothing</h2>
+        <div class="products">
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/kids.jpg" alt="Kids Product 1">
+                <h3>Kids Product 1</h3>
+                <p>$19.99</p>
+                <button onclick="addToCart('Kids Product 1', 19.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/kids-product-1" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/kids-product-1" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/kids-product-1" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+            <div class="product">
+                <img src="/Users/saitarunmattaparthi/Desktop/sisho/kids1.webp" alt="Kids Product 2">
+                <h3>Kids Product 2</h3>
+                <p>$24.99</p>
+                <button onclick="addToCart('Kids Product 2', 24.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/kids-product-2" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/kids-product-2" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/kids-product-2" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Kids Product 3">
+                <h3>Kids Product 3</h3>
+                <p>$29.99</p>
+                <button onclick="addToCart('Kids Product 3', 29.99)">Add to Cart</button>
+                <div class="links">
+                    <a href="https://www.shein.com/kids-product-3" target="_blank">Buy on Shein</a>
+                    <a href="https://www.amazon.com/kids-product-3" target="_blank">Buy on Amazon</a>
+                    <a href="https://www.temu.com/kids-product-3" target="_blank">Buy on Temu</a>
+                </div>
+            </div>
+        </div>
+        >
+    </div>
+
+    <div class="upload-section" style="background-image: url('/Users/saitarunmattaparthi/Desktop/sisho/fashion.jpg'); background-size: cover; background-position: center; padding: 20px; color: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);">
+        <h2>Upload Your Own Designs</h2>
+        <form>
+            <label for="design">Choose your design file:</label>
+            <input type="file" id="design" name="design"><br><br>
+            <label for="price">Set your price:</label>
+            <input type="text" id="price" name="price" placeholder="$"><br><br>
+            <button type="submit">Upload Design</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 Sisho - All rights reserved. Follow us on our social media platforms for updates and promotions!</p>
+</footer>
+
+<script>
+    function showSection(section) {
+        const sections = ['home', 'women', 'men', 'kids'];
+        sections.forEach(sec => {
+            document.getElementById(sec).style.display = (sec === section) ? 'block' : 'none';
+        });
+    }
+
+    function addToCart(productName, price) {
+        alert(`${productName} added to cart at $${price}`);
+        // Update shopping bag count logic can be added here
+    }
+</script>
+
+</body>
+</html>
